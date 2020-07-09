@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="stylesheet" type="text/css" href="./style.css"/>
+    <!---- FONT ---->
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <!---- ICONS PACK ---->
+    <script src="https://kit.fontawesome.com/cf1b42c263.js" crossorigin="anonymous"></script>
+    <title>Contacts Management App</title>
+</head>
+
+<body>
+
+<main>
+    <header>
+            <h1>Contacts Management App</h1>
+            <p>Use the form below to create and edit your new contact</p>
+    </header>
+
+    <section id="create-contact-sect">
+        <form id="create-contact-form">
+            <div class="form-container ">
+                <label class="label" for="first-name-input">First Name</label>
+                <input class="input" type="text" id="first-name-input" name="first-name" minlength="2" maxlength="50" pattern="^[A-Za-z]+$" required>
+            </div>
+            <div class="form-container ">
+                <label class="label" for="last-name">Last Name</label>
+                <input class="input" type="text" id="last-name-input" name="last-name" minlength="2" maxlength="50" pattern="^[A-Za-z]+$" required>
+            </div>
+            <div class="form-container ">
+                <label class="label" for="birth-input">Date of Birth</label>
+                <input class="input" type="date" id="birth-input" name="birth" required>
+            </div>
+            <div class="form-container ">
+                <label class="label" for="phone-input">Phone Number</label>
+                <input class="input" type="text" id="phone-input" name="phone" minlength="5" maxlength="20" pattern="^[0-9]+$" required>
+            </div>
+            <div class="form-container ">
+                <label class="label" for="email-input">E-mail Address</label>
+                <input class="input" type="email" id="email-input" name="email" maxlength="50" required>
+            </div>        
+            <div class="form-container ">
+                <label class="label" for="address-input">Address (optional)</label>
+                <input class="input" type="text" id="address-input" name="address" maxlength="50">
+            </div>
+            <button type="submit" id=create-contact class="button-style"></button>
+        </form>
+    </section>
+    <section id="records-sect" ">
+        <h2>
+            Select A Contact To View or Edit It
+        </h2>
+        <button id="view-all-button" class="button-style">View All Contacts</button>
+        <div id="records-div">
+            <ul id="records-list">
+
+            </ul>
+        </div>
+        
+    </section>
+    
+</main>
+<script src="./app.js"></script>
+</body>
+</html>
