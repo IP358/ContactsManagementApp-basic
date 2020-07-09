@@ -1,4 +1,4 @@
-// Globals
+// ---- Globals ----
 class Contact {
     constructor(id, firstName, lastName, birth, phone, email, address) {
         this.ID = id;
@@ -14,7 +14,7 @@ class Contact {
 let isEditing = false;
 let editedContactID = null;
 
-// Selectors
+// ---- Selectors ----
 const createContactForm = document.querySelector('#create-contact-form');
 
 const firstNameInput = document.querySelector("#first-name-input");
@@ -31,12 +31,14 @@ const viewAllButton = document.querySelector('#view-all-button');
 
 const recordsList = document.querySelector("#records-list");
 
-// Event Listeners
+// ---- Event Listeners ----
 createButton.addEventListener('click', addContact);
 recordsList.addEventListener('click', interactRecords);
 viewAllButton.addEventListener('click', () => initialContactsRender(getStoredContacts()));
 
-// Event Handlers
+// ---- Event Handlers ----
+
+// Handles validating, and then adding a new contact to local storage and displayed contacts list
 function addContact (e) {
     // Prevent form from submitting
     e.preventDefault();
@@ -76,6 +78,7 @@ function addContact (e) {
     createButton.textContent = "Create Contact";
 }
 
+// Handles interactions with contact records list
 function interactRecords (e){
     if(e.target.classList[0] === 'edit-button'){
         const selectedContactID = e.target.parentElement.previousSibling.getAttribute('id');
@@ -87,7 +90,9 @@ function interactRecords (e){
     }
 }
 
-// Helper Functions
+// ---- Helper Functions ----
+
+// updates localStorage with the new contact and returns updated contacts list
 function updateLocalStorage(contact, storedContacts){
     // If editing, find the contact by received ID, and replace it by the new contact details
     if(isEditing){
@@ -106,6 +111,7 @@ function updateLocalStorage(contact, storedContacts){
     //updateRecords(storedContacts);
 }
 
+// returns a contact with a matching ID, or -1 (to pre-check for dublicate contacts before adding a new contact)
 function getContactById(questionedContactID, currentStoredContacts){
     for (const contact of currentStoredContacts){
         if (questionedContactID === contact.ID){
@@ -115,6 +121,7 @@ function getContactById(questionedContactID, currentStoredContacts){
     return -1;
 }
 
+// returns stored contacts from localStorage
 function getStoredContacts(){
     let storedContacts;
     if (localStorage.getItem('storedContacts') === null){
@@ -125,6 +132,7 @@ function getStoredContacts(){
     return storedContacts;
 }
 
+// renders all of the contact records upon "View All Contacts" and when editing/ deleting existing contacts
 function initialContactsRender(storedContacts){
     recordsList.innerHTML = '';
     storedContacts.forEach(contact => {
@@ -132,6 +140,7 @@ function initialContactsRender(storedContacts){
     }) 
 }
 
+// a helper function for initialConcactsRender. Future ideas to use it without rerendering the whole list if only adding, and not editing, a new contact
 function addRecord(contact){
     // Create a record and buttons holder
     const recordDiv = document.createElement('div');
@@ -164,6 +173,7 @@ function addRecord(contact){
     
 }
 
+// updates the contact values of an edited contact to the forms so they can be re-used when editing existing contacts 
 function editContact(selectedContactID){
     // Set Global Variables
     isEditing = true;
@@ -186,6 +196,7 @@ function editContact(selectedContactID){
     return;
 }
 
+// deletes a contact by ID, and repaints contacts list
 function deleteContact(contactID){
     console.log(`Deleting Contact with ID ${contactID}`);
     const storedContacts = getStoredContacts();
@@ -197,6 +208,7 @@ function deleteContact(contactID){
     initialContactsRender(storedContacts);
 }
 
+// used for form validation before a new contact is created
 function checkValidation(){
     if(!firstNameInput.checkValidity()){
         window.alert("Only Letters Allowe in First Name");
