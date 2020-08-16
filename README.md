@@ -1,10 +1,8 @@
 # Contacts Management App
 This app allows adding, editing, and storing (localStorage) of contacts: first name, last name, phone number, date of birth, email address, and, optionally, living address.
 
-## Usage
-Use the app on a live server
-
-## shortcomings
+## Shortcomings
+    * Change styling to a neutral clean look.
     * When adding a new record, all records are re-rendered, which isn't optimal.
     * Contact properties wouldn't scale easily, as every new property woudld require index.html manipulation, a new input selector, editing Contact class, new Contact function, and checkValidation function.
     * Editing state relies on global let variable manipulation
@@ -14,5 +12,6 @@ Use the app on a live server
     contacts). To resolve the issue, getContactById would need to count matched contacts instead of returing the first
     instance.
 
-## Dependencies
-*fontawesome for icons
+## Live-demo
+https://compassionate-turing-b87fe2.netlify.app/
+
